@@ -1,12 +1,21 @@
-import {Request, Response} from "express"
-import { Payment } from "../domain/entities/Payment"
+import { Request, Response } from "express"
+import { Controller } from "./Controller"
+import { PaymentCreationUseCase } from "../application/PaymentCreationUseCase"
 
+export default class PaymentController implements Controller {
+    private paymentCreation: PaymentCreationUseCase
 
-export default class PaymentController {
-    index(req: Request, res: Response) {
-        const payment1 = new Payment(12)
-        const payment2 = new Payment(24)
-        const payments = [payment1.amount, payment2.amount]
-        return res.json(payments)
+    constructor() {
+        //TODO: dependency inyection
+        this.paymentCreation = new PaymentCreationUseCase()
+    }
+
+    run(req: Request, res: Response): void | Promise<void> {
+        //TODO: validate request data
+        let paymentAmount = 180.50 // TODO: get values from request
+
+        this.paymentCreation.run(paymentAmount)
+        
+        res.status(201)
     }
 }

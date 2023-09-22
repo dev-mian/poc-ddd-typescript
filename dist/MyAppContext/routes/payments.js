@@ -8,4 +8,4 @@ const express_1 = __importDefault(require("express"));
 const PaymentController_1 = __importDefault(require("../infrastructure/PaymentController"));
 const paymentController = new PaymentController_1.default;
 exports.paymentRouter = express_1.default.Router();
-exports.paymentRouter.get("/", paymentController.index);
+exports.paymentRouter.get("/", paymentController.run);

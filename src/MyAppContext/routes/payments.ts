@@ -5,4 +5,4 @@ const paymentController = new PaymentController
 
 export const paymentRouter = express.Router()
 
-paymentRouter.get("/", paymentController.index)
+paymentRouter.get("/", paymentController.run)
